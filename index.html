@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Metal Productions — Cinematic AI Production Studio</title>
+<meta name="description" content="Full Metal Productions — cinematic AI-native production studio. Hybrid AI, Unreal, and 3D pipelines for films, game cinematics, and creative campaigns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090b; --bg2:#0e0f13; --panel:#121319; --panel2:#16171e;
+  --ink:#ECEAE5; --muted:#8a8f99; --faint:#5a5f6a;
+  --steel:#92a3bd; --steel-dim:#5d6b80;
+  --ember:#E2803C; --ember-soft:#f0a064; --ember-deep:#b85f25;
+  --line:rgba(255,255,255,.085); --line2:rgba(255,255,255,.045);
+  --display:'Oswald',sans-serif; --body:'Archivo',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.6; position:relative; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:3; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1080px; margin:0 auto; padding:0 40px}
+a{color:inherit; text-decoration:none}
+section{scroll-margin-top:80px}
+
+nav{position:fixed; top:0; left:0; right:0; z-index:10; height:64px;
+  background:rgba(9,9,11,.72); backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.nav-in{max-width:1080px; margin:0 auto; padding:0 40px; height:100%; display:flex; align-items:center; justify-content:space-between}
+.nav-brand{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:15px; color:var(--ink)}
+.nav-brand .m{color:var(--ember)}
+.nav-links{display:flex; gap:26px; align-items:center}
+.nav-links a{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ember-soft);
+  border:1px solid var(--ember-deep); padding:8px 16px; transition:.25s}
+.nav-cta:hover{background:var(--ember); color:#0a0a0a; border-color:var(--ember)}
+
+.hero{position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 0 80px; overflow:hidden}
+.hero::after{content:""; position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:1000px; height:600px; z-index:0;
+  background:radial-gradient(ellipse at center, rgba(226,128,60,.15), rgba(226,128,60,0) 62%); filter:blur(10px)}
+.hero::before{content:""; position:absolute; bottom:-40px; left:0; right:0; height:300px; z-index:0;
+  background:radial-gradient(ellipse at 28% 120%, rgba(146,163,189,.10), rgba(146,163,189,0) 70%)}
+.hero-in{position:relative; z-index:1}
+.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.4em; text-transform:uppercase; color:var(--steel); margin-bottom:28px}
+.eyebrow .dot{color:var(--ember); margin:0 10px}
+.wordmark{font-family:var(--display); font-weight:700; text-transform:uppercase; font-size:clamp(50px,11vw,128px); line-height:.9; letter-spacing:.01em;
+  background:linear-gradient(180deg,#fbfaf8 0%,#cdd2da 48%,#8b929d 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.tagline{font-family:var(--display); font-weight:300; font-size:clamp(18px,2.6vw,26px); margin-top:28px; max-width:620px; line-height:1.4; color:var(--ink)}
+.tagline b{font-weight:600; color:var(--ember-soft)}
+.hero-cta{display:flex; gap:16px; margin-top:44px; flex-wrap:wrap}
+.btn{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; padding:15px 28px; transition:.25s; display:inline-flex; align-items:center; gap:12px; cursor:pointer; border:0}
+.btn-primary{background:var(--ember); color:#0a0a0a; font-weight:700}
+.btn-primary:hover{background:var(--ember-soft)}
+.btn-ghost{border:1px solid var(--line); color:var(--ink); background:none}
+.btn-ghost:hover{border-color:var(--steel); background:rgba(255,255,255,.03)}
+.btn .tri{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.hero-meta{display:flex; gap:28px; flex-wrap:wrap; margin-top:50px; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+.hero-meta span{display:flex; align-items:center; gap:9px}
+.hero-meta i{width:5px; height:5px; background:var(--ember); border-radius:50%}
+
+.sec{padding:96px 0; border-top:1px solid var(--line)}
+.sec-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--steel); margin-bottom:14px; display:flex; align-items:center; gap:12px}
+.sec-eyebrow::before{content:""; width:24px; height:1px; background:var(--ember)}
+.sec-h{font-family:var(--display); font-weight:600; text-transform:uppercase; font-size:clamp(28px,4.5vw,46px); letter-spacing:.01em; line-height:1; margin-bottom:14px}
+.sec-lede{color:var(--muted); max-width:560px; font-size:15px; margin-bottom:46px}
+
+.reel-embed{position:relative; aspect-ratio:16/9; border:1px solid var(--line); overflow:hidden; background:#000; box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.reel-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.grid-4{grid-template-columns:repeat(4,1fr); gap:16px}
+.tile{position:relative; display:block; aspect-ratio:16/10; border:1px solid var(--line); overflow:hidden; cursor:pointer;
+  background:linear-gradient(150deg,#16181e,#0d0e12); transition:.3s}
+.tile:hover{border-color:var(--ember-deep); transform:translateY(-3px)}
+.tile-thumb{position:absolute; inset:0; background-size:cover; background-position:center; opacity:.6; transition:.4s}
+.tile:hover .tile-thumb{opacity:.85; transform:scale(1.04)}
+.tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,8,10,.15) 30%,rgba(8,8,10,.93))}
+.tile-body{position:absolute; bottom:0; left:0; right:0; padding:18px; z-index:2}
+.tile-cat{font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ember-soft); margin-bottom:6px}
+.tile-title{font-family:var(--display); font-weight:500; text-transform:uppercase; font-size:17px; letter-spacing:.02em; line-height:1.05}
+.tile-mark{position:absolute; top:14px; right:14px; z-index:2; font-family:var(--mono); font-size:12px; color:var(--ink);
+  width:32px; height:32px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:rgba(9,9,11,.5); transition:.3s}
+.tile:hover .tile-mark{background:var(--ember); color:#0a0a0a; border-color:var(--ember)}
+.tile-mark.play{padding-left:3px}
+
+.caps{display:grid; grid-template-columns:repeat(2,1fr); gap:0 50px}
+.cap{display:flex; gap:20px; padding:24px 0; border-bottom:1px solid var(--line2)}
+.cap-n{font-family:var(--mono); font-size:12px; color:var(--ember); padding-top:3px; flex-shrink:0}
+.cap-t{font-family:var(--display); font-weight:500; text-transform:uppercase; font-size:18px; letter-spacing:.02em; line-height:1.1}
+.cap-d{color:var(--muted); font-size:13.5px; margin-top:5px; line-height:1.45}
+.caps-cta{margin-top:42px}
+
+.approach-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:56px; align-items:start}
+.approach-p{font-size:16px; color:#cfd2d6; line-height:1.7; margin-bottom:18px}
+.approach-p b{color:var(--ember-soft); font-weight:600}
+.stat{border-left:2px solid var(--ember-deep); padding:6px 0 6px 20px; margin-bottom:26px}
+.stat .v{font-family:var(--display); font-weight:600; font-size:32px; color:var(--ink); line-height:1}
+.stat .l{font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+
+.contact{padding:110px 0 0; position:relative; text-align:center}
+.contact::before{content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:640px; height:340px;
+  background:radial-gradient(ellipse at center, rgba(226,128,60,.12), transparent 65%); filter:blur(8px)}
+.contact-in{position:relative; z-index:1}
+.contact-h{font-family:var(--display); font-weight:700; text-transform:uppercase; font-size:clamp(34px,6vw,64px); line-height:.95; letter-spacing:.01em;
+  background:linear-gradient(180deg,#fbfaf8,#9aa1ac); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:30px}
+.contact-mail{font-family:var(--mono); font-size:clamp(15px,3vw,22px); letter-spacing:.05em; color:var(--ember-soft); border-bottom:1px solid var(--ember-deep); padding-bottom:6px; transition:.25s}
+.contact-mail:hover{color:#fff; border-color:var(--ember-soft)}
+.contact-phone{display:block; margin-top:26px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; color:var(--ink); transition:color .2s}
+.contact-phone:hover{color:var(--ember-soft)}
+.contact-phone span{color:var(--steel); font-size:11px; letter-spacing:.18em; text-transform:uppercase}
+.contact-meta{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin-top:24px}
+footer{margin-top:100px; border-top:1px solid var(--line); padding:34px 0}
+.foot-in{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px}
+.foot-brand{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:14px}
+.foot-brand .m{color:var(--ember)}
+.foot-r{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--faint)}
+.foot-lb{height:12px; background:#000}
+
+.lb{position:fixed; inset:0; z-index:50; background:rgba(6,6,8,.93); backdrop-filter:blur(12px);
+  display:none; align-items:center; justify-content:center; padding:40px}
+.lb.open{display:flex}
+.lb-stage{width:100%; max-width:1100px; aspect-ratio:16/9; position:relative; border:1px solid var(--line); box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.lb-stage iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.lb-close{position:absolute; top:-42px; right:0; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); cursor:pointer; background:none; border:0; transition:color .2s}
+.lb-close:hover{color:var(--ember-soft)}
+
+.reveal{opacity:0; transform:translateY(16px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1; transform:none}}
+
+@media (max-width:860px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .caps,.approach-grid{grid-template-columns:1fr; gap:0}
+  .approach-grid{gap:40px}
+}
+@media (max-width:680px){
+  .wrap,.nav-in{padding:0 22px}
+  .nav-links a{display:none}
+  .grid{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="#top" class="nav-brand">Full<span class="m">Metal</span></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#ai-films">AI Films</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in reveal">
+    <div class="eyebrow">Cinematic Production Studio <span class="dot">&#9679;</span> AI-Native Pipeline <span class="dot">&#9679;</span> Est. 2026</div>
+    <h1 class="wordmark">Full Metal<br>Productions</h1>
+    <p class="tagline">We build worlds, characters, and <b>cinematic sequences</b> &mdash; engineered through hybrid AI, Unreal, and 3D production pipelines.</p>
+    <div class="hero-cta">
+      <a href="#reel" class="btn btn-primary"><span class="tri"></span> Watch the Reel</a>
+      <a href="#contact" class="btn btn-ghost">Start a Project</a>
+    </div>
+    <div class="hero-meta">
+      <span><i></i>Films &amp; Cinematics</span>
+      <span><i></i>Game Trailers</span>
+      <span><i></i>Hybrid Production</span>
+      <span><i></i>2.39 : 1</span>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="reel">
+  <div class="wrap reveal">
+    <div class="sec-eyebrow">Showreel</div>
+    <h2 class="sec-h">2026 Reel</h2>
+    <p class="sec-lede">A cut of recent cinematic, hybrid, and AI-driven work.</p>
+    <div class="reel-embed">
+      <iframe src="https://player.vimeo.com/video/855308055?title=0&amp;byline=0&amp;portrait=0" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="work">
+  <div class="wrap reveal">
+    <div class="sec-eyebrow">Selected Work</div>
+    <h2 class="sec-h">Client &amp; Game Productions</h2>
+    <p class="sec-lede">Click any tile to play. 3D advertising and game work for recognized titles.</p>
+    <div class="grid">
+      <a class="tile" href="https://vimeo.com/1013140916" data-vimeo="1013140916" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1013140916.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">3D Game Advertising</div><div class="tile-title">Subway Surfers</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1025848545" data-vimeo="1025848545" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1025848545.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">3D Game Advertising</div><div class="tile-title">Angry Birds</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1013144171" data-vimeo="1013144171" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1013144171.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">3D Ad &middot; Music Video</div><div class="tile-title">Shop Titan</div></div>
+      </a>
+      <a class="tile" href="https://www.facebook.com/watch/?v=847096833722775" target="_blank" rel="noopener">
+        <div class="tile-thumb"></div>
+        <span class="tile-mark">&#8599;</span>
+        <div class="tile-body"><div class="tile-cat">Game Advertising &middot; Facebook</div><div class="tile-title">PUBG</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/911957419" data-vimeo="911957419" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/911957419.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">In-House Production</div><div class="tile-title">In-House Sample</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ai-films">
+  <div class="wrap reveal">
+    <div class="sec-eyebrow">AI Production</div>
+    <h2 class="sec-h">AI Films</h2>
+    <p class="sec-lede">Original short-form pieces produced through our AI-native pipeline.</p>
+    <div class="grid grid-4">
+      <a class="tile" href="https://vimeo.com/1199301412" data-vimeo="1199301412" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199301412.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">Paranoid</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199301277" data-vimeo="1199301277" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199301277.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">In a Hurry</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199301276" data-vimeo="1199301276" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199301276.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">Cyber Jogger</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199300915" data-vimeo="1199300915" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199300915.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">Nearsighted</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199300883" data-vimeo="1199300883" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199300883.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">Relief</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199300815" data-vimeo="1199300815" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199300815.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">Growl</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199300780" data-vimeo="1199300780" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199300780.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">On Time</div></div>
+      </a>
+      <a class="tile" href="https://vimeo.com/1199300708" data-vimeo="1199300708" target="_blank" rel="noopener">
+        <div class="tile-thumb" style="background-image:url('https://vumbnail.com/1199300708.jpg')"></div>
+        <span class="tile-mark play">&#9654;</span>
+        <div class="tile-body"><div class="tile-cat">AI Film</div><div class="tile-title">My Way</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="capabilities">
+  <div class="wrap reveal">
+    <div class="sec-eyebrow">What We Do</div>
+    <h2 class="sec-h">Capabilities</h2>
+    <p class="sec-lede">End-to-end cinematic production across pure-AI, hybrid, and traditional 3D pipelines.</p>
+    <div class="caps">
+      <div class="cap"><div class="cap-n">01</div><div><div class="cap-t">AI Visual Video Generation</div><div class="cap-d">Concept-to-video, styleframes, and exploratory sequences.</div></div></div>
+      <div class="cap"><div class="cap-n">02</div><div><div class="cap-t">Scripted AI Cinematics</div><div class="cap-d">Narrative, story-driven AI sequences with continuity.</div></div></div>
+      <div class="cap"><div class="cap-n">03</div><div><div class="cap-t">Hybrid Unreal + AI</div><div class="cap-d">Real-time cinematic production and virtual workflows.</div></div></div>
+      <div class="cap"><div class="cap-n">04</div><div><div class="cap-t">Motion Graphics / UA</div><div class="cap-d">Performance creatives, campaigns, and trailer cutdowns.</div></div></div>
+      <div class="cap"><div class="cap-n">05</div><div><div class="cap-t">Traditional 3D Cinematic</div><div class="cap-d">Full Maya / Unreal pipeline for trailers and films.</div></div></div>
+      <div class="cap"><div class="cap-n">06</div><div><div class="cap-t">Concept Visualization</div><div class="cap-d">Worldbuilding, keyframes, and visual pitch support.</div></div></div>
+      <div class="cap"><div class="cap-n">07</div><div><div class="cap-t">Pipeline Consultation</div><div class="cap-d">AI production planning, feasibility, and pipeline design.</div></div></div>
+    </div>
+    <div class="caps-cta">
+      <a href="#contact" class="btn btn-ghost">Request the Full Service &amp; Pricing Guide</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="approach">
+  <div class="wrap reveal">
+    <div class="approach-grid">
+      <div>
+        <div class="sec-eyebrow">Approach</div>
+        <h2 class="sec-h">AI-Native, Cinematically Trained</h2>
+        <p class="approach-p">We pair a <b>cinematic eye</b> with engineered AI pipelines &mdash; building reusable character and environment systems so consistency holds across an entire production, not just a single shot.</p>
+        <p class="approach-p">That hybrid of <b>craft and pipeline</b> lets us move at AI speed without the drift and waste that sink most AI long-form work &mdash; and it scales cleanly from a 15-second spot to a full episodic season.</p>
+      </div>
+      <div>
+        <div class="stat"><div class="v">15s &rarr; 22min</div><div class="l">Spot to episodic, one pipeline</div></div>
+        <div class="stat"><div class="v">Hybrid</div><div class="l">AI &middot; Unreal &middot; Maya / 3D</div></div>
+        <div class="stat"><div class="v">Consistency-first</div><div class="l">Reusable character &amp; world systems</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="wrap contact-in reveal">
+    <div class="sec-eyebrow" style="justify-content:center">Get in Touch</div>
+    <h2 class="contact-h">Let's build<br>something cinematic</h2>
+    <a class="contact-mail" href="mailto:fmp.welcome@gmail.com">fmp.welcome@gmail.com</a>
+    <a class="contact-phone" href="https://wa.me/639616532115" target="_blank" rel="noopener">+63 961 653 2115 &nbsp;&middot;&nbsp; <span>WhatsApp / Viber</span></a>
+    <div class="contact-meta">Mickey Casta&ntilde;o &middot; Jason Moll</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-brand">Full<span class="m">Metal</span> Productions</div>
+    <div class="foot-r">&copy; 2026 Full Metal Productions &middot; Cinematic AI Production</div>
+  </div>
+</footer>
+<div class="foot-lb"></div>
+
+<div class="lb" id="lightbox">
+  <div class="lb-stage">
+    <button class="lb-close" aria-label="Close">Close &#10005;</button>
+    <div id="lb-frame"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'), frame=document.getElementById('lb-frame');
+  function open(id){ frame.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); frame.innerHTML=''; document.body.style.overflow=''; }
+  document.querySelectorAll('[data-vimeo]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); open(el.getAttribute('data-vimeo')); });
+  });
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.querySelector('.lb-close').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
+</body>
+</html>
