@@ -244,8 +244,12 @@ footer{margin-top:100px; padding:34px 0}
    carries a left side bearing the mono and body faces don't. */
 .wordmark{margin-left:-.045em}
 /* What We Do: its own section on the site's dark ground, tagline size, centered. */
-.wwd{background:var(--bg); text-align:center}
-.wwd .sec-eyebrow{justify-content:center; margin-bottom:26px}
+.wwd{background:var(--bg); padding-top:clamp(112px,13vw,160px)}
+
+/* Centered section treatment, shared by What We Do and Who We Are. */
+.ctr{text-align:center}
+.ctr .sec-eyebrow{justify-content:center}
+.ctr .wwd-p, .ctr .approach-p{margin-left:auto; margin-right:auto}
 .wwd-p{max-width:840px; margin:0 auto;
   font-family:var(--display); font-weight:300;
   font-size:clamp(18px,2.6vw,26px); line-height:1.45; color:var(--ink)}
@@ -282,9 +286,10 @@ footer{margin-top:100px; padding:34px 0}
   </div>
 </header>
 
-<section class="sec wwd" id="what-we-do">
+<section class="sec wwd ctr" id="what-we-do">
   <div class="wrap reveal">
     <div class="sec-eyebrow">What We Do</div>
+    <h2 class="sec-h">Bringing Worlds To Life</h2>
     <p class="wwd-p">Full Metal Productions is a full-service agency dedicated to high-impact, cinematic game trailer production. We partner with game studios to bring their worlds to life with maximum visual power, owning the entire creative process from concepting and scripting to advanced post-production and immersive sound design. We are pipeline polyglots, fully fluent in Maya, Unreal Engine, and hybrid environments, and by mastering these workflows we keep premium production fast and cost-effective for studio budgets without ever sacrificing quality.</p>
   </div>
 </section>
@@ -551,7 +556,7 @@ footer{margin-top:100px; padding:34px 0}
   </div>
 </section>
 
-<section class="sec" id="who-we-are">
+<section class="sec ctr" id="who-we-are">
   <div class="wrap reveal">
     <div class="sec-eyebrow">Who We Are</div>
     <h2 class="sec-h stack">A Cinematic Eye<br>On An Engineered Pipeline</h2>
