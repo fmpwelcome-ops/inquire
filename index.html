@@ -242,6 +242,24 @@ footer{margin-top:100px; padding:34px 0}
 /* Optically align the wordmark with the eyebrow and tagline. Oswald's cap F
    carries a left side bearing the mono and body faces don't. */
 .wordmark{margin-left:-.045em}
+
+/* Hero eyebrow sat at --steel (#92a3bd) over a photographic plate. Brighter
+   colour, plus a tight shadow under the existing glow: on small mono type the
+   hard edge does as much for legibility as the lift in brightness. */
+.eyebrow{color:#dfe6f0;
+  text-shadow:0 1px 2px rgba(0,0,0,.95), 0 2px 14px rgba(0,0,0,.9)}
+
+/* Vertical scrim. The stock pass runs 90deg and is fully transparent past 40%
+   of the width, so the right half of the hero text sat on raw photograph. This
+   bottom-up layer covers the whole text band and reads as a grade, not a panel.
+   Listed first so it composites above the original horizontal pass. */
+.hero-bg::after{background:
+  linear-gradient(to top,
+    rgba(9,9,11,.88) 0%, rgba(9,9,11,.70) 20%, rgba(9,9,11,.55) 45%,
+    rgba(9,9,11,.44) 72%, rgba(9,9,11,.22) 90%, rgba(9,9,11,0) 100%),
+  linear-gradient(90deg,
+    rgba(9,9,11,.45) 0%, rgba(9,9,11,.12) 40%, rgba(9,9,11,0) 100%)}
+
 /* What We Do: its own section on the site's dark ground, tagline size, centered. */
 .wwd{background:var(--bg); padding-top:clamp(112px,13vw,160px)}
 
