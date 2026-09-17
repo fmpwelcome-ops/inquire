@@ -345,8 +345,8 @@ footer{margin-top:100px; padding:34px 0}
     <div class="sec-eyebrow">Game Trailers &amp; Ads</div>
     <h2 class="sec-h">Selected Works</h2>
     <div class="grid grid-work">
-      <a class="tile" href="https://vimeo.com/1205040811" data-vimeo="1205040811" target="_blank" rel="noopener">
-        <img class="tile-thumb" src="https://vumbnail.com/1205040811.jpg" alt="PUBG: Ghostplane, game trailer by Full Metal Productions" loading="lazy" decoding="async">
+      <a class="tile" href="https://vimeo.com/1227712272/daa36ac29c" data-vimeo="1227712272" data-hash="daa36ac29c" target="_blank" rel="noopener">
+        <img class="tile-thumb" src="https://vumbnail.com/1227712272.jpg" alt="PUBG: Ghostplane, game trailer by Full Metal Productions" loading="lazy" decoding="async" onerror="this.style.display='none'">
         <span class="tile-mark play">&#9654;</span>
         <div class="tile-body">
           <div class="tile-cat">Game Trailer</div>
@@ -621,11 +621,11 @@ footer{margin-top:100px; padding:34px 0}
 (function(){
   var lb=document.getElementById('lightbox'), frame=document.getElementById('lb-frame');
   function show(){ lb.classList.add('open'); document.body.style.overflow='hidden'; }
-  function openVimeo(id){ frame.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'; show(); }
+  function openVimeo(id, h){ frame.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?'+(h?'h='+h+'&':'')+'autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'; show(); }
   function openYouTube(id){ frame.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'; show(); }
   function close(){ lb.classList.remove('open'); frame.innerHTML=''; document.body.style.overflow=''; }
   document.querySelectorAll('[data-vimeo]').forEach(function(el){
-    el.addEventListener('click', function(e){ e.preventDefault(); openVimeo(el.getAttribute('data-vimeo')); });
+    el.addEventListener('click', function(e){ e.preventDefault(); openVimeo(el.getAttribute('data-vimeo'), el.getAttribute('data-hash')); });
   });
   document.querySelectorAll('[data-youtube]').forEach(function(el){
     el.addEventListener('click', function(e){ e.preventDefault(); openYouTube(el.getAttribute('data-youtube')); });
